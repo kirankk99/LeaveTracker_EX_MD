@@ -1,0 +1,93 @@
+{
+  "_id": {
+    "$oid": "6a0a00f0fa25cb93576d8c33"
+  },
+  "employeeId": "EMP002",
+  "name": "Swathi",
+  "email": "swathi@test.com",
+  "password": "09876",
+  "location": "Bangalore",
+  "department": "Engineering",
+  "joinDate": {
+    "$date": "2026-05-17T17:54:56.627Z"
+  },
+  "role": "EMPLOYEE",
+  "status": "PENDING",
+  "customFields": [],
+  "createdAt": {
+    "$date": "2026-05-17T17:54:56.636Z"
+  },
+  "updatedAt": {
+    "$date": "2026-05-17T17:54:56.636Z"
+  },
+  "__v": 0
+}
+
+Now we properly implement:
+
+Route
+ → Controller
+    → Service
+       → Model
+
+       for basic testing with app.ts file
+       import express from "express";
+import cookieParser from "cookie-parser";
+
+// basic to importing user module
+import { UserModel } from "./modules/users/users.model";
+
+//
+const app = express();
+//
+
+app.use(express.json());
+//
+app.use(cookieParser());
+//
+app.get("/", (req, res) => {
+  res.send("Leave tracker api running...");
+});
+//
+app.get("/create-user", async (_req, res) => {
+  const user = await UserModel.create({
+    employeeId: "EMP001",
+
+    name: "Kirankumar",
+
+    email: "kiran@test.com",
+
+    password: "123456",
+
+    location: "Bangalore",
+
+    department: "Engineering",
+
+    joinDate: new Date(),
+  });
+
+  res.json(user);
+});
+
+//==========================================
+
+// Important Architecture Concept
+// app.ts
+
+// ONLY:
+
+// middleware
+// routes
+// app config
+
+// NO:
+
+// DB connection
+// server listen
+
+// This separation matters later for:
+
+// testing
+// scaling
+// microservices
+// background jobs

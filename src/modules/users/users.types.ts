@@ -1,0 +1,15 @@
+export enum UserStatus {
+  PENDING = "PENDING",
+  ACTIVE = "ACTIVE",
+  REJECTED = "REJECTED",
+  INACTIVE = "INACTIVE",
+}
+
+export enum UserRole {
+  EMPLOYEE = "EMPLOYEE",
+  MANAGER = "MANAGER",
+  ADMIN = "ADMIN",
+  COORDINATOR = "COORDINATOR",
+  PROJECT_LEAD = "PROJECTLEAD",
+  HR = "HR",
+}
