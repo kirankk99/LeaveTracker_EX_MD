@@ -91,3 +91,18 @@ app.get("/create-user", async (_req, res) => {
 // scaling
 // microservices
 // background jobs
+
+
+===================================
+========= before get into the leave tracker ======
+1. Get Users
+2. Get User By Id
+3. Update User
+4. Soft Delete User
+5. Departments
+6. Locations
+7. Authentication
+8. Authorization
+9. Leave Types
+10. Leave Requests
+============================
