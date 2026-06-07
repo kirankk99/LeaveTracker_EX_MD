@@ -1,0 +1,16 @@
+info:
+  name: Deactivate_User
+  type: http
+  seq: 1
+
+http:
+  method: PATCH
+  url: http://localhost:5000/api/users/6a25205b18835f3989138a0e/deactivate
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+​

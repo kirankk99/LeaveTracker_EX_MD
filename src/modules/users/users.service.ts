@@ -1,5 +1,6 @@
 import { IUser } from "./users.interface";
 import { UserModel } from "./users.model";
+import { UserStatus } from "./users.types";
 
 //
 export const createUserService = async (payload: Partial<IUser>) => {
@@ -56,3 +57,37 @@ export const getUserByIdService = async (id: string) => {
 // findOne()
 // findById()
 // countDocuments()
+
+// =================  Update services ===================
+export const updateUserService = async (
+  id: string,
+  payload: Partial<IUser>,
+) => {
+  const updateUser = await UserModel?.findByIdAndUpdate(id, payload, {
+    new: true,
+    runValidators: true,
+  });
+  return updateUser;
+};
+// Why new: true?
+// MongoDB_returns old document with updateandpull, with new true, we will get new
+
+// =======Why runValidators: true
+// Because Mongoose schema validation doesn't always run on updates unless explicitly enabled.
+
+export const deactivateUserService = async (id: string) => {
+  const user = await UserModel.findByIdAndUpdate(
+    id,
+    {
+      status: UserStatus.INACTIVE,
+    },
+    {
+      new: true,
+      runValidators: true,
+    },
+  );
+
+  return user;
+};
+
+// ===========

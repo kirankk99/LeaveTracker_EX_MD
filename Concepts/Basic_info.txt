@@ -123,3 +123,12 @@ Approver Details
 Employee Card
 
 =============
+| Method     | Use Case                                           | Example                                           |
+| ---------- | -------------------------------------------------- | ------------------------------------------------- |
+| **GET**    | Read data                                          | `GET /users`                                      |
+| **POST**   | Create new resource or execute business action     | `POST /users`, `POST /leave-requests/123/approve` |
+| **PUT**    | Replace/update entire resource                     | `PUT /users/123`                                  |
+| **PATCH**  | Update specific fields of a resource               | `PATCH /users/123`                                |
+| **DELETE** | Remove a resource (rarely used in enterprise apps) | `DELETE /users/123`                               |
+
+/==============================

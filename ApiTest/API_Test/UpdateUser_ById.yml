@@ -1,0 +1,22 @@
+info:
+  name: UpdateUser_ById
+  type: http
+  seq: 1
+
+http:
+  method: PUT
+  url: http://localhost:5000/api/users/6a0a01214ce92526ab65f356
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Kiran",
+        "invalidData": "abc"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -25,3 +25,30 @@ export const createUserValidator = Joi.object({
     .valid(...Object.values(UserStatus))
     .optional(),
 });
+
+// Update user validator
+export const updateUserValidator = Joi.object({
+  employeeId: Joi.string().optional(),
+
+  name: Joi.string().optional(),
+
+  email: Joi.string().email().optional(),
+
+  password: Joi.string().min(6).optional(),
+
+  location: Joi.string().optional(),
+
+  department: Joi.string().optional(),
+
+  joinDate: Joi.date().optional(),
+
+  role: Joi.string()
+    .valid(...Object.values(UserRole))
+    .optional(),
+
+  status: Joi.string()
+    .valid(...Object.values(UserStatus))
+    .optional(),
+})
+  .min(1)
+  .unknown(false);
