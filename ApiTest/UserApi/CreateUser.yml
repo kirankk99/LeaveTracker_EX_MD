@@ -1,0 +1,28 @@
+info:
+  name: CreateUser
+  type: http
+
+http:
+  method: POST
+  url: http://localhost:5000/api/users/
+  body:
+    type: json
+    data: |-
+      {
+              "employeeId": "EMP005",
+              "name": "Sandhya",
+              "email": "sandhya005@test.com",
+              "password": "123456",
+              "location": "Bangalore",
+              "department": "Qa",
+              "joinDate": "06/06/2026",
+              "role": "HR",
+              "status": "ACTIVE"
+            }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
