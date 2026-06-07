@@ -1,6 +1,11 @@
 import { Request, Response } from "express";
 
-import { createUserService } from "./users.service";
+import {
+  createUserService,
+  getUserByIdService,
+  getUsersService,
+  getUsersServiceByDept,
+} from "./users.service";
 
 import { createUserValidator } from "./users.validator";
 
@@ -35,7 +40,75 @@ export const createUserController = async (req: Request, res: Response) => {
     }
   }
 };
+// ======================================
+// get users data from the list
+export const getUsersController = async (req: Request, res: Response) => {
+  try {
+    const users = await getUsersService();
 
+    res.status(200).json({
+      success: true,
+      data: users,
+      message: "Users fetched successfully",
+    });
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};
+
+// get user based on the department passed
+export const getUsersByDept = async (req: Request, res: Response) => {
+  try {
+    console.log(req.query);
+    const { deptName, role }: any = req?.query;
+    const users = await getUsersServiceByDept(deptName, role);
+
+    res.status(200).json({
+      success: true,
+      data: users,
+      message: "Users fetched successfully",
+    });
+  } catch (error) {
+    console.log(error);
+
+    res.status(500).json({
+      success: false,
+      message: `Internal error, ${error}`,
+    });
+  }
+};
+//  get the user based on the Id
+export const getUserByIdController = async (req: Request, res: Response) => {
+  try {
+    const id = req.params?.id as string;
+
+    const user = await getUserByIdService(id);
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      data: user,
+    });
+  } catch (error) {
+    console.log(error);
+
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};
 // IMPORTANT Concept
 
 // Controller should ONLY:

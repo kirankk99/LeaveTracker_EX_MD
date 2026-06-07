@@ -106,3 +106,20 @@ app.get("/create-user", async (_req, res) => {
 9. Leave Types
 10. Leave Requests
 ============================
+There are basic 4 method we use commonly in fetching the data from table
+find()
+findOne()
+findById()
+countDocuments()
+
+=================================
+
+Fetch a single user by MongoDB _id
+GET /api/users/:id
+User Profile
+Edit User
+Manager Details
+Approver Details
+Employee Card
+
+=============

@@ -7,6 +7,36 @@ export const createUserService = async (payload: Partial<IUser>) => {
   return user;
 };
 
+export const getUsersService = async () => {
+  const users = await UserModel.find();
+
+  return users;
+};
+export const getUsersServiceByDept = async (dept: string, role: string) => {
+  const filter: Record<string, string> = {};
+
+  if (dept) {
+    filter.department = dept;
+  }
+
+  if (role) {
+    filter.role = role;
+  }
+
+  const users = await UserModel.find(filter);
+  return users;
+};
+
+export const getUserByIdService = async (id: string) => {
+  const user = await UserModel.findById(id);
+
+  return user;
+};
+
+// ==================
+// ==================
+// ==================
+
 // Why Service Layer?
 
 // Business logic belongs here.
@@ -19,3 +49,10 @@ export const createUserService = async (payload: Partial<IUser>) => {
 // workflow assignment
 
 // all happen inside services.
+// ==================================================================
+// ============================
+// There are basic 4 method we use commonly in fetching the data from table
+// find()
+// findOne()
+// findById()
+// countDocuments()
