@@ -5,6 +5,9 @@ import cookieParser from "cookie-parser";
 // import { UserModel } from "./modules/users/users.model";
 // removed and logic moved to users.route.ts file -----------------------------
 import userRoutes from "./modules/users/users.route";
+import locationRoutes from "./modules/locations/locations.rute";
+import { notFoundHandler } from "./core/middleware/notfound.middleware";
+import { errorHandler } from "./core/middleware/error.middleware";
 
 //
 const app = express();
@@ -22,4 +25,11 @@ app.get("/", (req, res) => {
 app.use("/api/users", userRoutes);
 
 //
+// not found
+app.use(notFoundHandler);
+
+// error handler
+app.use(errorHandler);
+// register the locations rutes
+app.use("/api/locations", locationRoutes);
 export default app;
